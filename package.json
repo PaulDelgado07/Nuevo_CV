@@ -1,4 +1,5 @@
 {
+  
   "name": "portafolio-v2",
   "private": true,
   "version": "0.0.0",
@@ -22,5 +23,6 @@
     "oxlint": "^1.71.0",
     "tailwindcss": "^4.3.2",
     "vite": "^8.1.1"
-  }
+  },
+  "packageManager": "pnpm@10.0.0"
 }
