@@ -5,17 +5,19 @@ import './App.css'
 function App() {
   const rootRef = useRef(null)
   const glassRef = useRef(null)
+  const projectBtnRef = useRef(null)
+  const contactBtnRef = useRef(null)
   const instanceRef = useRef(null)
 
   useEffect(() => {
-    if (!rootRef.current || !glassRef.current) return
+    if (!rootRef.current || !glassRef.current || !projectBtnRef.current || !contactBtnRef.current) return
 
     let cancelled = false
 
     const initGlass = async () => {
       const instance = await LiquidGlass.init({
         root: rootRef.current,
-        glassElements: [glassRef.current],
+        glassElements: [glassRef.current, projectBtnRef.current, contactBtnRef.current],
         defaults: {
           blurAmount: 0.18,
           refraction: 0.75,
@@ -52,42 +54,19 @@ function App() {
       </header>
 
       <main className="app-main">
-        <div ref={rootRef} className="liquid-root">
-          <div className="liquid-background">
-            <section id="about" className="hero-section">
-              <h1>Hola, soy Paul</h1>
-              <p>Desarrollador web en formación y apasionado por crear experiencias digitales.</p>
-              <button type="button" className="cta-button">
-                Ver proyectos
-              </button>
-            </section>
-
-            <section id="projects" className="content-section">
-              <h2>Proyectos</h2>
-              <p>Aquí irá una lista de tus proyectos destacados.</p>
-            </section>
+        <section className="hero-section">
+          <div ref={rootRef} className="liquid-root">
+            <div ref={glassRef} className="glass-panel">
+              <div className="glass-copy">
+                <h1>Paúl David Delgado Vergara</h1>
+                <p>Estudiante de Ciencia de Datos y Desarrollo. Apasionado por crear soluciones útiles que unan tecnología, visión analítica y diseño.</p>
+                <div className="hero-actions">
+                  <a ref={projectBtnRef} href="#projects" className="glass-button" data-config={JSON.stringify({ button: true, cornerRadius: 24 })}>Proyectos</a>
+                  <a ref={contactBtnRef} href="#contact" className="glass-button" data-config={JSON.stringify({ button: true, cornerRadius: 24 })}>Contacto</a>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div
-            ref={glassRef}
-            className="liquid-glass-card"
-            data-config={JSON.stringify({
-              blurAmount: 0.2,
-              refraction: 0.8,
-              cornerRadius: 28,
-              floating: true,
-            })}
-          >
-            <p className="glass-label">Liquid Glass</p>
-            <h3>Panel de ejemplo</h3>
-            <p>Este bloque usa el efecto de vidrio líquido sobre el fondo.</p>
-          </div>
-
-        </div>
-
-        <section id="contact" className="content-section">
-          <h2>Contacto</h2>
-          <p>Puedes escribirme si quieres trabajar juntos o conversar sobre ideas.</p>
         </section>
       </main>
 
